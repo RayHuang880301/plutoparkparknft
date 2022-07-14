@@ -36,8 +36,8 @@ export default function PlayCard(props: Props) {
           ele.remove();
       }, time);
   }
-  function bounceInTop(name = 'c3', time = 700) {
-      const ele = createElement(name, 'effect-item ef-bounce-in-top');
+  function bounceInTop(name = FortuneType.Study, time = 700) {
+      const ele = createElement('ebit' + name, 'effect-item ef-bounce-in-top');
       const img = createElement(`${name}-img`, '', 'img');
       img.setAttribute('src', require(name));
       ele.append(img);
@@ -61,8 +61,8 @@ export default function PlayCard(props: Props) {
       }
       remove(ele, time);
   }
-  function heartbeat(name = 'b8', time = 700) {
-      const ele = createElement(name, 'effect-item ef-heartbeat');
+  function heartbeat(name = FortuneType.Study, time = 700) {
+      const ele = createElement('eh' + name, 'effect-item ef-heartbeat');
       const img = createElement(`${name}-img`, '', 'img');
       img.setAttribute('src', require(name));
       ele.append(img);
@@ -72,14 +72,14 @@ export default function PlayCard(props: Props) {
 
       remove(ele, time);
   }
-  function waterfall(name = 'c1', time = 1500) {
+  function waterfall(name = FortuneType.Study, time = 1500) {
       let offset = 0;
       const num = 6;
       const offsetBase = Math.round(window.innerWidth / num);
       new Array(num).fill(0).forEach((_, i) => {
-          const ele = createElement(name, 'effect-item ef-waterfall top-bottom');
+          const ele = createElement('tbp' + name, 'effect-item ef-waterfall top-bottom');
           ele.style.transform = `translateX(${offset}px)`;
-          const box = createElement(name, 'box');
+          const box = createElement('tbpb' + name, 'box');
           setTimeout(() => {
               const img = createElement(`${name}-img-${i}`, '', 'img');
               img.setAttribute('src', require(name));
@@ -91,8 +91,8 @@ export default function PlayCard(props: Props) {
           offset += offsetBase;
       });
   }
-  function rotateRandom(name = 'b2', time = 500) {
-      const ele = createElement(name, 'effect-item ef-rotate-item');
+  function rotateRandom(name = FortuneType.Study, time = 500) {
+      const ele = createElement('eri' + name, 'effect-item ef-rotate-item');
       const img = createElement(`${name}-img`, '', 'img');
       img.setAttribute('src', require(name));
       ele.append(img);
@@ -102,13 +102,13 @@ export default function PlayCard(props: Props) {
 
       remove(ele, time);
   }
-  function rotateRandomBatch(name = 'b3', time = 500) {
+  function rotateRandomBatch(name = FortuneType.Study, time = 500) {
       new Array(Math.round((Math.random() * 3) + 3)).fill(0).forEach(() => {
           rotateRandom(name, time);
       });
   }
-  const fadeInCenterBig = (name = 'free-b6', time = 500) => {
-      const ele = createElement(name, 'effect-item ef-fade-big');
+  const fadeInCenterBig = (name = FortuneType.Study, time = 500) => {
+      const ele = createElement('efb' + name, 'effect-item ef-fade-big');
       const img = createElement(`${name}-img`, '', 'img');
       img.setAttribute('src', require(name));
       ele.append(img);
@@ -116,8 +116,8 @@ export default function PlayCard(props: Props) {
       remove(ele, time);
   }
 
-  function animateFadeIn(name: string, time = 1000) {
-      const ele = createElement(name, 'effect-item ef-fade-in');
+  function animateFadeIn(name = FortuneType.Study, time = 1000) {
+      const ele = createElement('efaa' + name, 'effect-item ef-fade-in');
       const img = createElement(`${name}-img`, '', 'img');
       img.setAttribute('src', require(name));
       ele.append(img);
@@ -127,7 +127,7 @@ export default function PlayCard(props: Props) {
 
       remove(ele, time);
   }
-  function animateFadeInBatch(name = 'free-b5', time = 1000) {
+  function animateFadeInBatch(name = FortuneType.Study, time = 1000) {
       new Array(Math.round((Math.random() * 5) + 3)).fill(0).forEach(() => {
           animateFadeIn(name, time);
       });
@@ -145,12 +145,14 @@ export default function PlayCard(props: Props) {
         player.currentTime = 0;
       }
       player.play();
+      console.log(fortuneType)
       effectList[random](fortuneType as any);
     }
   };
 
   useEffect(() => {
     const handler = (event: any) => {
+      console.log(event.key)
       if(event.key === 'z') {
         playRandomEffect();
       }
@@ -171,13 +173,13 @@ export default function PlayCard(props: Props) {
           (
             subImage &&
             <div className={styles.subBoxImage}>
-              <Image src={subImage} width={200} height={200} alt='' layout='responsive'/>
+              <Image src={subImage} width={300} height={300} alt='' layout='responsive'/>
             </div>
           ) || ''
         }
-        <Image src={image} width={200} height={200} alt='' layout='responsive'/>
+        <Image src={image} width={300} height={300} alt='' layout='responsive'/>
       </div>
-      <div className={styles.choice}>即興加入音效，信仰加持一波！</div>
+      <div className={styles.choice}>點擊 Z 信仰加持一波！</div>
     </div>
     </>
   )

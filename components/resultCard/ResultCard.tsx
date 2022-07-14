@@ -2,6 +2,7 @@ import React from 'react'
 import styles from './ResultCard.module.css'
 import Image from 'next/image';
 import ImageTicket from '../../assets/ticket.png';
+import Link from 'next/link';
 
 interface Props {
   result: string;
@@ -32,6 +33,9 @@ export default function ResultCard(props: Props) {
           <div className={styles.word}>{word}</div>
         </div>
       </div>
+      <Link href="https://plutohiphopdept.com/"><a target="_blank" rel="noreferrer">
+        <div className={styles.claim}>免費領取</div>
+      </a></Link>
     </div>
   )
 }

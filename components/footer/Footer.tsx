@@ -12,7 +12,7 @@ export default function Footer(props: Props) {
   const { children } = props
   return (
     <div className={styles.section}>
-      <Link href="https://plutohiphopdept.com/"><a target="_blank" rel="noreferrer"><div className={styles.word}>Created by PlutoLab</div></a></Link>
+      <div className={styles.word}>Created by PlutoLab</div>
       {/* <div className={styles.img}><Image src={plutoLabLogo} width={67} height={45} alt=''/></div> */}
       <div className={styles.copyright}>Pluto Lab © 2022</div>
     </div>

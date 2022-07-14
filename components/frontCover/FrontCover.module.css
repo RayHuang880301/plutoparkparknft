@@ -19,6 +19,27 @@
   /* padding-top: 5rem; */
 }
 
+.join {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.3rem 1rem;
+  margin: 2rem 0 0.5rem 0;
+  color: #056FD8;
+  background: #E2E2E2;
+  border: 3px solid #056FD8;
+  border-radius: 16px;
+  font-family: Montserrat;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.word {
+  text-align: center;
+  color: #F1CD4B;
+  font-weight: 600;
+}
+
 .title {
   color: white;
   flex: none;
@@ -37,5 +58,5 @@
   align-items: center;
   flex-direction: row;
   flex-wrap: wrap;
-  margin: 3rem 2rem 1rem 2rem;
+  margin: 4rem 2rem 0rem 2rem;
 }

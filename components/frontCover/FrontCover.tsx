@@ -1,9 +1,10 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
+import Image from 'next/image'
 import styles from './FrontCover.module.css'
 import Header from '../header/Header'
 import Footer from '../footer/Footer'
 import LuckyCard from '../luckyCard/LuckyCard'
-import logo from '../../assets/logo.png'
+import dcLogo from '../../assets/dcLogo.png'
 import LoadingCard from '../loadingCard/LoadingCard'
 import PlayCard from '../playCard/PlayCard'
 import ResultCard from '../resultCard/ResultCard'
@@ -24,6 +25,7 @@ import keyboard1 from '../../assets/keyboard1.png'
 import keyboard2 from '../../assets/keyboard2.png'
 import keyboard3 from '../../assets/keyboard3.png'
 import keyboard4 from '../../assets/keyboard4.png'
+import Link from 'next/link'
 
 const FAKE_LOADING_TIME = 5 * 1000;
 const SPECIAL_TIME = 14.6 * 1000;
@@ -148,6 +150,7 @@ export default function FrontCover() {
   const [feelingType, setFeelingType] = useState<FeelingType>(FeelingType.None);
   const [isFeelingSubmit, setIsFeelingSubmit] = useState(false);
   const [keyboardImg, setKeyboardImg] = useState<string>(keyboard1.src);
+  const [isJoin, setIsJoin] = useState(false);
 
   const subImage = useCallback(() => {
     const item = FortuneList.find(item => item.type === fortuneType);
@@ -276,68 +279,80 @@ export default function FrontCover() {
 
   
 
-  useEffect(() => {
-    const keyDownHandler = (event: any) => {
-      if(event.key) {
-        switch (event.key) {
-          case 'a':
-          case 'A':
-            location.reload();
-            break;
-          case 'q':
-          case 'Q':
-            chooseFortune(FortuneType.Study);     
-            break;
-          case 'w':
-          case 'W':
-            chooseFortune(FortuneType.Work);     
-            break;
-          case 'e':
-          case 'E':
-            chooseFortune(FortuneType.Love);     
-            break;
-          case 'r':
-          case 'R':
-            chooseFortune(FortuneType.Health);     
-            break;
-          case 'd':
-          case 'D':
-            chooseFeeling(FeelingType.Sleep);     
-            break;
-          case 'f':
-          case 'F':
-            chooseFeeling(FeelingType.Hot);     
-            break;
-          case 'g':
-          case 'G':
-            chooseFeeling(FeelingType.Drink);     
-            break;
-          case 'h':
-          case 'H':
-            chooseFeeling(FeelingType.Comfortable);     
-            break;
-          case 'j':
-          case 'J':
-            chooseFeeling(FeelingType.Big);     
-            break;
-          default:
-            break;
-        }
-      }
-    }
-    window.addEventListener('keydown', keyDownHandler);
-    return () => {
-      window.removeEventListener('keydown', keyDownHandler);
-    }
-  }, [chooseFeeling, chooseFortune, isFeelingSubmit, isFortuneSubmit, fortuneType, feelingType])
+  // useEffect(() => {
+  //   const keyDownHandler = (event: any) => {
+  //     if(event.key) {
+  //       switch (event.key) {
+  //         case 'a':
+  //         case 'A':
+  //           location.reload();
+  //           break;
+  //         case 'q':
+  //         case 'Q':
+  //           chooseFortune(FortuneType.Study);     
+  //           break;
+  //         case 'w':
+  //         case 'W':
+  //           chooseFortune(FortuneType.Work);     
+  //           break;
+  //         case 'e':
+  //         case 'E':
+  //           chooseFortune(FortuneType.Love);     
+  //           break;
+  //         case 'r':
+  //         case 'R':
+  //           chooseFortune(FortuneType.Health);     
+  //           break;
+  //         case 'd':
+  //         case 'D':
+  //           chooseFeeling(FeelingType.Sleep);     
+  //           break;
+  //         case 'f':
+  //         case 'F':
+  //           chooseFeeling(FeelingType.Hot);     
+  //           break;
+  //         case 'g':
+  //         case 'G':
+  //           chooseFeeling(FeelingType.Drink);     
+  //           break;
+  //         case 'h':
+  //         case 'H':
+  //           chooseFeeling(FeelingType.Comfortable);     
+  //           break;
+  //         case 'j':
+  //         case 'J':
+  //           chooseFeeling(FeelingType.Big);     
+  //           break;
+  //         default:
+  //           break;
+  //       }
+  //     }
+  //   }
+  //   window.addEventListener('keydown', keyDownHandler);
+  //   return () => {
+  //     window.removeEventListener('keydown', keyDownHandler);
+  //   }
+  // }, [chooseFeeling, chooseFortune, isFeelingSubmit, isFortuneSubmit, fortuneType, feelingType])
 
   return (
     <div className={styles.section}>
       {/* <Header /> */}
       <div className={styles.container}>
         {/* <PlutoEffect></PlutoEffect> */}
+        {!isJoin &&
+        (
+          <>
+            <Link href="https://discord.gg/plutolab"><a target="_blank" rel="noreferrer">
+            <button className={styles.join} onClick = {() => setIsJoin(true)}><Image src={dcLogo.src} width={35} height={35} alt='' />&nbsp;Pluto Lab</button>
+            </a></Link>
+            <div className={styles.word}>
+            加入Pluto Lab<br />
+            免費領取算命NFT！
+            </div>
+          </>
+        )}
         {
-          !isFortuneSubmit &&
+          isJoin && !isFortuneSubmit &&
           (
             <>
             <div className={styles.cards}>
@@ -348,22 +363,22 @@ export default function FrontCover() {
           )
         }
         {
-          (isFortuneSubmit && !isFeelingSubmit &&
+          (isJoin && isFortuneSubmit && !isFeelingSubmit &&
           <div className={styles.cards}>
             {FeelingList.map((item, idx) =>  <LuckyCard size={true} onClick={(event) => chooseFeeling(item.type)} isPlay={isFeelingActive(item.type)} audioPath={item.audioPath} key={idx} img={item.image} backgroundColor={isFeelingActive(item.type) ? '#939393' : item.backgroundColor} subImage={subImage()}>{item.title}</LuckyCard> )}
           </div> ) || ''
         }
         {
-          (!specialComfirmState.isComfirm && isFortuneSubmit && isFeelingSubmit && 
+          (isJoin && !specialComfirmState.isComfirm && isFortuneSubmit && isFeelingSubmit && 
           <PlayCard fortuneType={fortuneType} image={eyeImage()} subImage={subImage()}></PlayCard>) || ''
         }
         {
-          (!loadingState.isLoaded && specialComfirmState.isComfirm  && isFortuneSubmit && isFeelingSubmit && 
+          (isJoin && !loadingState.isLoaded && specialComfirmState.isComfirm  && isFortuneSubmit && isFeelingSubmit && 
           <LoadingCard />) || ''
         }
         {
           (
-            loadingState.isLoaded && specialComfirmState.isComfirm  && isFortuneSubmit && isFeelingSubmit && 
+            isJoin && loadingState.isLoaded && specialComfirmState.isComfirm  && isFortuneSubmit && isFeelingSubmit && 
             <ResultCard result={luckyType} word={TicketInfo[luckyType][fortuneType]} image={eyeImage()} subImage={subImage()}/>
           ) || ''
                   

@@ -14,7 +14,7 @@
   /* justify-content: space-between; */
   background: url('../../assets//ticket.png') center bottom no-repeat;
   background-size: contain;
-  margin-top: 10%;
+  margin-top: 12%;
   width: 40%;
   height: 70%;
 }
@@ -53,6 +53,12 @@
 .content {
   /* padding: 1rem; */
   /* margin-top: 1rem; */
+}
+
+.claim {
+  margin-top: 5%;
+  font-weight: 600;
+  color: #F1CD4B;
 }
 
 @media screen and (min-height: 950px) and (max-height:768px) {
