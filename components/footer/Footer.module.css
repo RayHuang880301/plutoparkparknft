@@ -1,0 +1,27 @@
+.section {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* padding: 1rem 2rem; */
+  /* height: 50px; */
+  font-family: Montserrat;
+}
+
+.word {
+  text-align: center;
+  font-weight: 600;
+  font-size: 14px;
+  width: 150px;
+  color: white;
+}
+
+.copyright {
+  text-align: center;
+  width: 150px;
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+}
