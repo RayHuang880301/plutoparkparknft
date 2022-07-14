@@ -343,11 +343,11 @@ export default function FrontCover() {
         (
           <>
             <Link href="https://discord.gg/plutolab"><a target="_blank" rel="noreferrer">
-            <button className={styles.join} onClick = {() => setIsJoin(true)}><Image src={dcLogo.src} width={35} height={35} alt='' />&nbsp;Pluto Lab</button>
+            <div className={styles.join} onClick = {() => setIsJoin(true)}><Image src={dcLogo.src} width={35} height={35} alt='' />&nbsp;Pluto Lab</div>
             </a></Link>
             <div className={styles.word}>
-            加入Pluto Lab<br />
-            免費領取算命NFT！
+              加入Pluto Lab<br />
+              免費領取算命NFT！
             </div>
           </>
         )}
