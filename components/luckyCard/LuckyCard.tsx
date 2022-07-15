@@ -1,6 +1,7 @@
 import React, { MouseEventHandler, useEffect, useRef } from 'react'
 import styles from './LuckyCard.module.css'
 import Image from 'next/image'
+import pImg from '../../assets/pImgWt.svg'
 interface Props {
   img: string;
   children: string;
@@ -10,10 +11,11 @@ interface Props {
   backgroundColor: string;
   subImage?: string;
   size?: boolean
+  isFortuneSubmit?: boolean;
 }
 
 export default function LuckyCard(props: Props) {
-  const { img, children, onClick, audioPath, isPlay, backgroundColor, subImage, size } = props;
+  const { isFortuneSubmit, img, children, onClick, audioPath, isPlay, backgroundColor, subImage, size } = props;
   const musicPlayers = useRef<HTMLAudioElement | undefined>(
     typeof Audio !== "undefined" ? new Audio(audioPath) : undefined
   );
@@ -52,9 +54,10 @@ export default function LuckyCard(props: Props) {
             </div>
           ) || ''
         }
-        <Image src={img} width={200} height={200} alt='' layout='responsive'/>
+        {isFortuneSubmit && <Image src={img} width={200} height={200} alt='' layout='responsive'/>}
+        {!isFortuneSubmit && <div className={styles.logo}><Image src={pImg} width={80} height={80} alt='' layout='fixed'/></div>}
       </div>
-      <div className={styles.choice}>{children}</div>
+      {/* <div className={styles.choice}>{children}</div> */}
     </div>
   )
 }

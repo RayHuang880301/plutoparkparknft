@@ -200,7 +200,6 @@ export default function FrontCover() {
     if(specialComfirmState.timeoutId) {
       clearTimeout(specialComfirmState.timeoutId);
     }
-    console.log('SPECIAL')
     const timeoutId = setTimeout(() => {
       setSpecialComfirmState({
         isComfirm: true,
@@ -356,7 +355,7 @@ export default function FrontCover() {
           (
             <>
             <div className={styles.cards}>
-              {FortuneList.map((item, idx) =>  <LuckyCard onClick={(event) => chooseFortune(item.type)} isPlay={isFortuneActive(item.type)} audioPath={item.audioPath} key={idx} img={item.image} backgroundColor={isFortuneActive(item.type) ? '#FB8111' : item.backgroundColor}>{item.title}</LuckyCard> )}
+              {FortuneList.map((item, idx) =>  <LuckyCard onClick={(event) => chooseFortune(item.type)} isFortuneSubmit={isFortuneSubmit} isPlay={isFortuneActive(item.type)} audioPath={item.audioPath} key={idx} img={item.image} backgroundColor={isFortuneActive(item.type) ? '#FB8111' : item.backgroundColor}>{item.title}</LuckyCard> )}
             </div>
             <div className={styles.title}>今天，我想來點...</div>
             </>
@@ -365,7 +364,7 @@ export default function FrontCover() {
         {
           (isJoin && isFortuneSubmit && !isFeelingSubmit &&
           <div className={styles.cards}>
-            {FeelingList.map((item, idx) =>  <LuckyCard size={true} onClick={(event) => chooseFeeling(item.type)} isPlay={isFeelingActive(item.type)} audioPath={item.audioPath} key={idx} img={item.image} backgroundColor={isFeelingActive(item.type) ? '#939393' : item.backgroundColor} subImage={subImage()}>{item.title}</LuckyCard> )}
+            {FeelingList.map((item, idx) =>  <LuckyCard onClick={(event) => chooseFeeling(item.type)} size={true} isFortuneSubmit={isFortuneSubmit} isPlay={isFeelingActive(item.type)} audioPath={item.audioPath} key={idx} img={item.image} backgroundColor={isFeelingActive(item.type) ? '#939393' : item.backgroundColor} subImage={subImage()}>{item.title}</LuckyCard> )}
           </div> ) || ''
         }
         {

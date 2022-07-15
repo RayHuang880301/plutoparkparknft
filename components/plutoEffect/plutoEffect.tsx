@@ -127,7 +127,6 @@ export default function PlutoEffect(props : Props) {
 
         setInterval(() => {
             animateFadeInBatch('Work');
-            console.log('wwww')
         }, 2000);
     }, []);
 

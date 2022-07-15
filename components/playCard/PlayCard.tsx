@@ -145,14 +145,12 @@ export default function PlayCard(props: Props) {
         player.currentTime = 0;
       }
       player.play();
-      console.log(fortuneType)
       effectList[random](fortuneType as any);
     }
   };
 
   useEffect(() => {
     const handler = (event: any) => {
-      console.log(event.key)
       if(event.key === 'z') {
         playRandomEffect();
       }
