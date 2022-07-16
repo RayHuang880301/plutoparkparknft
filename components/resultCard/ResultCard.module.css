@@ -56,13 +56,13 @@
 }
 
 .claim {
-  margin-top: 5%;
+  margin-top: 2%;
   font-weight: 600;
   color: #F1CD4B;
   cursor: pointer;
 }
 
-@media screen and (min-height: 950px) and (max-height:768px) {
+@media (min-height: 950px) and (max-height:768px) {
   .bg {
     width: 391px;
     height: 696px;
@@ -74,13 +74,13 @@
 }
 
 
-@media screen and (max-width:390px) {
+@media (max-width:450px) {
   .result {
-    font-size: 1.2rem;
-    margin: .3rem auto;
+    font-size: 1.6rem;
+    margin: .5rem auto;
   }
   .word {
-    font-size: .65rem;
+    font-size: .8rem;
   }
   .qrCode {
     width: 200px;

@@ -38,7 +38,7 @@
   height: 100%;
 }
 
-@media screen and (max-width:390px) {
+@media (max-width:450px) {
   .choice {
     font-size: 1.2rem;
   }
