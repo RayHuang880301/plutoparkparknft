@@ -326,7 +326,7 @@ export default function FrontCover() {
           <>
             <div className={styles.qrCode}><Image src={dcQrCode.src} width={250} height={250} alt='' /></div>
             <div className={styles.join} onClick = {() => setIsJoin(true)}>
-              <div className={styles.joinImg}><Image src={dcLogo.src} width={35} height={35} alt='' layout="responsive"/></div>
+              <div className={styles.joinImg}><Image src={dcLogo.src} width={25} height={25} alt='' layout="responsive"/></div>
               &nbsp;已加入
             </div>
           </>

@@ -76,11 +76,11 @@
 
 @media screen and (max-width:390px) {
   .result {
-    font-size: 1.6rem;
+    font-size: 1.2rem;
     margin: .3rem auto;
   }
   .word {
-    font-size: .85rem;
+    font-size: .65rem;
   }
   .qrCode {
     width: 200px;

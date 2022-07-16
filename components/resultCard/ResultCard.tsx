@@ -3,7 +3,7 @@ import styles from './ResultCard.module.css'
 import Image from 'next/image';
 import ImageTicket from '../../assets/ticket.png';
 import Link from 'next/link';
-import dcQrCode from '../../assets/dcQrCode.png'
+import mintPageQrCode from '../../assets/mintPageQrCode.png'
 
 interface Props {
   result: string;
@@ -39,7 +39,7 @@ export default function ResultCard(props: Props) {
       }     
       {showQrCode && 
       <div className={styles.qrCode}>
-        <Image src={dcQrCode.src} width={280} height={280} alt='' />
+        <Image src={mintPageQrCode.src} width={280} height={280} alt='' />
       </div>
       }
     </div>

@@ -152,18 +152,18 @@ export default function PlayCard(props: Props) {
     return 0;
   }, [])
 
-  useEffect(() => {
-    const handler = (event: any) => {
-      if(event.key === 'z') {
-        playRandomEffect();
-      }
-    }
-    window.addEventListener("keydown", handler);
+  // useEffect(() => {
+  //   const handler = (event: any) => {
+  //     if(event.key === 'z') {
+  //       playRandomEffect();
+  //     }
+  //   }
+  //   window.addEventListener("keydown", handler);
 
-    return () => {
-      window.removeEventListener("keydown", handler);
-    }
-  }, [])
+  //   return () => {
+  //     window.removeEventListener("keydown", handler);
+  //   }
+  // }, [])
 
   return (
     <>
