@@ -59,6 +59,12 @@
   cursor: pointer;
 }
 
+.joinImg {
+  width: 35px;
+  height: 35px;
+  
+}
+
 .word {
   text-align: center;
   color: #F1CD4B;
@@ -90,4 +96,23 @@
 
 .cardsFortune {
   width: 410px;
+}
+
+@media screen and (max-width: 390px) {
+  .title {
+    font-size: 1rem;
+  }
+  .cardsFortune {
+    width: 330px;
+  }
+
+  .join {
+    font-size: 1rem;
+    margin-top: .7rem;
+  }
+  .joinImg {
+    width: 25px;
+    height: 25px;
+    
+  }
 }

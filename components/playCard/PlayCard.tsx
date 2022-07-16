@@ -180,7 +180,7 @@ export default function PlayCard(props: Props) {
         }
         <Image src={image} width={300} height={300} alt='' layout='responsive'/>
       </div>
-      <div className={styles.choice}>點擊 Z 信仰加持一波！</div>
+      <div className={styles.choice}>點擊畫面信仰加持一波！</div>
     </div>
     </>
   )

@@ -25,3 +25,9 @@
   font-weight: 600;
   color: white;
 }
+
+@media screen and (max-width: 390px) {
+  .copyright, .word {
+    font-size: 8px;
+  };
+}

@@ -71,3 +71,14 @@
     height: 300px;
   }
 }
+
+
+@media screen and (max-width:390px) {
+  .result {
+    font-size: 1.6rem;
+    margin: .3rem auto;
+  }
+  .word {
+    font-size: .85rem;
+  }
+}

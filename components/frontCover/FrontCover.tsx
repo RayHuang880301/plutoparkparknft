@@ -248,6 +248,7 @@ export default function FrontCover() {
         timeoutId: 0,
       })
       setKeyboardImg(keyboard4.src)
+      playSpecialMode(true);
     }, FAKE_LOADING_TIME);
     setLoadingState({
       isLoaded: false,
@@ -305,62 +306,6 @@ export default function FrontCover() {
     return fortune?.subtitle;
   }, [fortuneType])
   
-
-  // useEffect(() => {
-  //   const keyDownHandler = (event: any) => {
-  //     if(event.key) {
-  //       switch (event.key) {
-  //         case 'a':
-  //         case 'A':
-  //           location.reload();
-  //           break;
-  //         case 'q':
-  //         case 'Q':
-  //           chooseFortune(FortuneType.Study);     
-  //           break;
-  //         case 'w':
-  //         case 'W':
-  //           chooseFortune(FortuneType.Work);     
-  //           break;
-  //         case 'e':
-  //         case 'E':
-  //           chooseFortune(FortuneType.Love);     
-  //           break;
-  //         case 'r':
-  //         case 'R':
-  //           chooseFortune(FortuneType.Health);     
-  //           break;
-  //         case 'd':
-  //         case 'D':
-  //           chooseFeeling(FeelingType.Sleep);     
-  //           break;
-  //         case 'f':
-  //         case 'F':
-  //           chooseFeeling(FeelingType.Hot);     
-  //           break;
-  //         case 'g':
-  //         case 'G':
-  //           chooseFeeling(FeelingType.Drink);     
-  //           break;
-  //         case 'h':
-  //         case 'H':
-  //           chooseFeeling(FeelingType.Comfortable);     
-  //           break;
-  //         case 'j':
-  //         case 'J':
-  //           chooseFeeling(FeelingType.Big);     
-  //           break;
-  //         default:
-  //           break;
-  //       }
-  //     }
-  //   }
-  //   window.addEventListener('keydown', keyDownHandler);
-  //   return () => {
-  //     window.removeEventListener('keydown', keyDownHandler);
-  //   }
-  // }, [chooseFeeling, chooseFortune, isFeelingSubmit, isFortuneSubmit, fortuneType, feelingType])
-
   return (
     <div className={styles.section}>
       {/* <Header /> */}
@@ -380,7 +325,10 @@ export default function FrontCover() {
         (
           <>
             <div className={styles.qrCode}><Image src={dcQrCode.src} width={250} height={250} alt='' /></div>
-            <div className={styles.join} onClick = {() => setIsJoin(true)}><Image src={dcLogo.src} width={35} height={35} alt='' />&nbsp;已加入</div>
+            <div className={styles.join} onClick = {() => setIsJoin(true)}>
+              <div className={styles.joinImg}><Image src={dcLogo.src} width={35} height={35} alt='' layout="responsive"/></div>
+              &nbsp;已加入
+            </div>
           </>
         )}
         {
