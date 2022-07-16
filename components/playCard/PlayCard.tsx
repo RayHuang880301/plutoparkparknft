@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect, useCallback } from 'react'
 import styles from './PlayCard.module.css'
 import Image from 'next/image'
 import ImageEffect1 from '../../assets/effect1.png'
@@ -134,20 +134,23 @@ export default function PlayCard(props: Props) {
   }
   //
   
-  const playRandomEffect = () => {
+  const playRandomEffect = useCallback((): number => {
     const effectList = [animateFadeInBatch, fadeInCenterBig, rotateRandomBatch, heartbeat ]
     const list = [effectMusic1, effectMusic2, effectMusic3, effectMusic4]
     const random = Math.floor(Math.random() * list.length);
-    const player = list[random].current;
-    if(player) {
-      if(!player.paused) {
-        player.pause();
-        player.currentTime = 0;
-      }
+    const player = list[random].current?.cloneNode() as any;
+    if(player && player.play) {
+      // if(!player.paused) {
+      //   player.pause();
+      //   player.currentTime = 0;
+      // }
       player.play();
-      effectList[random](fortuneType as any);
+      // console.log(fortuneType)
+      const time = effectList[random](fortuneType as any);
+      // onEffectPlay();
     }
-  };
+    return 0;
+  }, [])
 
   useEffect(() => {
     const handler = (event: any) => {
@@ -164,8 +167,8 @@ export default function PlayCard(props: Props) {
 
   return (
     <>
-    <div ref={root} id="pluto-effect" className="pluto-effect only-nft"></div>
-    <div className={styles.box}>
+    <div ref={root} id="pluto-effect" onClick={() => playRandomEffect()} className="pluto-effect only-nft"></div>
+    <div className={styles.box} onClick={() => playRandomEffect()}>
       <div className={styles.boxImage} style={{backgroundColor: '#F1CD4B', }}>
         {
           (

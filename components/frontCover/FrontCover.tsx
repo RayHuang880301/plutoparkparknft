@@ -26,6 +26,7 @@ import keyboard2 from '../../assets/keyboard2.png'
 import keyboard3 from '../../assets/keyboard3.png'
 import keyboard4 from '../../assets/keyboard4.png'
 import Link from 'next/link'
+import dcQrCode from '../../assets/dcQrCode.png'
 
 const FAKE_LOADING_TIME = 5 * 1000;
 const SPECIAL_TIME = 14.6 * 1000;
@@ -50,8 +51,9 @@ export enum FeelingType {
 const enum LuckyType {
   Unknown = '',
   Good = '大吉',
+  Well = '小吉',
   Normal = '平籤',
-  Bad = '大凶'
+  Bad = '凶'
 }
 const LuckyList = [LuckyType.Good, LuckyType.Normal, LuckyType.Bad];
 
@@ -59,84 +61,103 @@ const LuckyList = [LuckyType.Good, LuckyType.Normal, LuckyType.Bad];
 const TicketInfo: any = {
   [LuckyType.Unknown]: {},
   [LuckyType.Good]: {
-      [FortuneType.Study]: '讀書不會打瞌睡，只看一次全都會，考試會寫的都正確，有不會的都猜對。',
-      [FortuneType.Work]: '升職加薪好運到，願你幸福快樂開口笑，出門見喜祥雲繞，成功記得分我錢。',
-      [FortuneType.Love]: '將迎來命定人，並深情相愛，一生一世不分離，好扯。',
-      [FortuneType.Health]: '身體非常硬朗，防疫險賺不到錢，健保費送給政府，辛苦了'
+    [FortuneType.Study]: '有料，沒準備還拿高分考倒數最後一名！',
+    [FortuneType.Work]: '直接走到飛，歐印賭身家後晉升少年董！',
+    [FortuneType.Love]: '加賴叫過去，愛愛世大運，冥王星的海王就是你了！',
+    [FortuneType.Health]: '極限體能王484啊，怎麼搞都不會倒誒？',
+  },
+  [LuckyType.Well]: {
+    [FortuneType.Study]: '會寫的都寫對不會寫都猜對，考前記得先大便',
+    [FortuneType.Work]: '川頁一波，穩健成長，長大當個大潤發',
+    [FortuneType.Love]: '曖昧的小店開成分公司，Lover就在你眼前！',
+    [FortuneType.Health]: '小子不錯啊...金槍不倒天天趴踢',
   },
   [LuckyType.Normal]: {
-      [FortuneType.Study]: '維持目前的步調吧，可能進步可能退步，神明也幫不上忙',
-      [FortuneType.Work]: '春天的事業是溫暖的，夏天的事業是芬芳的，秋天的事業是沉甸甸的，冬天的事業是平靜的，其實也不知道這代表啥意思',
-      [FortuneType.Love]: '有愛人請繼續愛他/她，有喜歡的人就去追求，不然人生好無聊',
-      [FortuneType.Health]: '謹言慎行，不要以為自己不會確診，有保險才可以確診'
+    [FortuneType.Study]: '不會寫的一律選Ｃ，不然怎麼辦？',
+    [FortuneType.Work]: '別人小賺你暴富，別人小虧你破產，當心就好',
+    [FortuneType.Love]: '我們的速配指數有幾趴？好好經營，來者可追！',
+    [FortuneType.Health]: '你知道去哪找我，這是一張健康籤！Pluto提醒你注意平安！',
   },
   [LuckyType.Bad]: {
-      [FortuneType.Study]: '讀書一定打瞌睡，看了N次都不會，考試會寫的都...喔沒有會寫的',
-      [FortuneType.Work]: '錢少事多離家遠，做什麼事都不對，總覺得自己很衰，哭哭',
-      [FortuneType.Love]: '遇到好人不是真的好，另一半會讓你心煩；若是單身今年想脫單，不可能。吧',
-      [FortuneType.Health]: '來park park可能喝醉，回家路上小心安全！'
+    [FortuneType.Study]: '出包了啦，完美避開正確答案，Pluto之神提醒你記得讀書',
+    [FortuneType.Work]: '塊陶...被割爛後麥當勞報到，快加入Pluto化解！',
+    [FortuneType.Love]: '聽完這首歌你就會放下他了⋯⋯嗎？沒事啦，下個會更好。',
+    [FortuneType.Health]: '沒保險就少出門多戴口罩，不然自摸二條的就是你！',
   }
 }
 
 const FortuneList = [
     {
-        title: '學業運',
-        type: FortuneType.Study,
-        audioPath: '/audio/melody1.mp3',
-        image: ImageFortune1.src,
-        backgroundColor: '#F1CD4B',
-    }, {
-        title: '事業運',
-        type: FortuneType.Work,
-        audioPath: '/audio/melody2.mp3',
-        image: ImageFortune2.src,
-        backgroundColor: '#F1CD4B',
-    }, {
-        title: '戀愛運',
-        type: FortuneType.Love,
-        audioPath: '/audio/melody3.mp3',
-        image: ImageFortune3.src,
-        backgroundColor: '#F1CD4B',
-    }, {
-        title: '健康運',
-        type: FortuneType.Health,
-        audioPath: '/audio/melody4.mp3',
-        image: ImageFortune4.src,
-        backgroundColor: '#F1CD4B',
-    }
+      title: '學業運',
+      subtitle: '你最近似乎有「學業」的壓力...',
+      type: FortuneType.Study,
+      audioPath: '/audio/melody1.mp3',
+      audio: new Audio('/audio/melody1.mp3'),
+      image: ImageFortune1.src,
+      backgroundColor: '#F1CD4B',
+  }, {
+      title: '事業運',
+      subtitle: '你最近特別心煩「事業」瓶頸...',
+      type: FortuneType.Work,
+      audioPath: '/audio/melody2.mp3',
+      audio: new Audio('/audio/melody2.mp3'),
+      image: ImageFortune2.src,
+      backgroundColor: '#F1CD4B',
+  }, {
+      title: '戀愛運',
+      subtitle: '你最近可能有「暈船」的困擾...',
+      type: FortuneType.Love,
+      audioPath: '/audio/melody3.mp3',
+      audio: new Audio('/audio/melody3.mp3'),
+      image: ImageFortune3.src,
+      backgroundColor: '#F1CD4B',
+  }, {
+      title: '健康運',
+      subtitle: '你最近有點在意身心「健康」...',
+      type: FortuneType.Health,
+      audioPath: '/audio/melody4.mp3',
+      audio: new Audio('/audio/melody4.mp3'),
+      image: ImageFortune4.src,
+      backgroundColor: '#F1CD4B',
+  }
 ]
 const FeelingList = [
-    {
-        title: '想睡',
-        type: FeelingType.Sleep,
-        audioPath: '/audio/drum1.mp3',
-        image: ImageFeeling1.src,
-        backgroundColor: '#D9D9D9',
-    }, {
-        title: '好熱',
-        type: FeelingType.Hot,
-        audioPath: '/audio/drum2.mp3',
-        image: ImageFeeling2.src,
-        backgroundColor: '#D9D9D9',
-    }, {
-        title: '宿醉',
-        type: FeelingType.Drink,
-        audioPath: '/audio/drum3.mp3',
-        image: ImageFeeling3.src,
-        backgroundColor: '#D9D9D9',
-    }, {
-        title: '舒服',
-        type: FeelingType.Comfortable,
-        audioPath: '/audio/drum4.mp3',
-        image: ImageFeeling4.src,
-        backgroundColor: '#D9D9D9',
-    }, {
-        title: '法大',
-        type: FeelingType.Big,
-        audioPath: '/audio/drum5.mp3',
-        image: ImageFeeling5.src,
-        backgroundColor: '#D9D9D9',
-    }
+  {
+    title: '想睡',
+    type: FeelingType.Sleep,
+    audioPath: '/audio/drum1.mp3',
+    audio: new Audio('/audio/drum1.mp3'),
+    image: ImageFeeling1.src,
+    backgroundColor: '#D9D9D9',
+}, {
+    title: '好熱',
+    type: FeelingType.Hot,
+    audioPath: '/audio/drum2.mp3',
+    audio: new Audio('/audio/drum2.mp3'),
+    image: ImageFeeling2.src,
+    backgroundColor: '#D9D9D9',
+}, {
+    title: '宿醉',
+    type: FeelingType.Drink,
+    audioPath: '/audio/drum3.mp3',
+    audio: new Audio('/audio/drum3.mp3'),
+    image: ImageFeeling3.src,
+    backgroundColor: '#D9D9D9',
+}, {
+    title: '舒服',
+    type: FeelingType.Comfortable,
+    audioPath: '/audio/drum4.mp3',
+    audio: new Audio('/audio/drum4.mp3'),
+    image: ImageFeeling4.src,
+    backgroundColor: '#D9D9D9',
+}, {
+    title: '法大',
+    type: FeelingType.Big,
+    audioPath: '/audio/drum5.mp3',
+    audio: new Audio('/audio/drum5.mp3'),
+    image: ImageFeeling5.src,
+    backgroundColor: '#D9D9D9',
+}
 ]
 
 export default function FrontCover() {
@@ -151,6 +172,7 @@ export default function FrontCover() {
   const [isFeelingSubmit, setIsFeelingSubmit] = useState(false);
   const [keyboardImg, setKeyboardImg] = useState<string>(keyboard1.src);
   const [isJoin, setIsJoin] = useState(false);
+  const [isQrCode, setIsQrCode] = useState(false);
 
   const subImage = useCallback(() => {
     const item = FortuneList.find(item => item.type === fortuneType);
@@ -267,15 +289,21 @@ export default function FrontCover() {
     return !isFeelingSubmit && feeling === feelingType;
   }
 
-  const playSpecialMode = () => {
+  const playSpecialMode = useCallback((isLoop = false) => {
     const fortune = FortuneList.find(item => item.type === fortuneType);
     const feeling = FeelingList.find(item => item.type === feelingType);
-    const audio1 = new Audio(fortune?.audioPath);
-    const audio2 = new Audio(feeling?.audioPath);
-    audio1.play();
-    audio2.play();
-  }
+    if(fortune && feeling) {
+      fortune.audio.loop = isLoop;
+      fortune.audio.play();
+      feeling.audio.loop = isLoop;
+      feeling.audio.play();
+    }
+  }, [feelingType, fortuneType]);
 
+  const getFeelingSubTitle = useCallback(() => {
+    const fortune = FortuneList.find(item => item.type === fortuneType);
+    return fortune?.subtitle;
+  }, [fortuneType])
   
 
   // useEffect(() => {
@@ -338,24 +366,36 @@ export default function FrontCover() {
       {/* <Header /> */}
       <div className={styles.container}>
         {/* <PlutoEffect></PlutoEffect> */}
-        {!isJoin &&
+        {!isQrCode &&
         (
           <>
-            <Link href="https://discord.gg/plutolab"><a target="_blank" rel="noreferrer">
-            <div className={styles.join} onClick = {() => setIsJoin(true)}><Image src={dcLogo.src} width={35} height={35} alt='' />&nbsp;Pluto Lab</div>
-            </a></Link>
+            <div className={styles.dc} onClick = {() => setIsQrCode(true)}><Image src={dcLogo.src} width={35} height={35} alt='' />&nbsp;Pluto Lab</div>
             <div className={styles.word}>
               加入Pluto Lab<br />
               免費領取算命NFT！
             </div>
           </>
         )}
+        {isQrCode && !isJoin &&
+        (
+          <>
+            <div className={styles.qrCode}><Image src={dcQrCode.src} width={250} height={250} alt='' /></div>
+            <div className={styles.join} onClick = {() => setIsJoin(true)}><Image src={dcLogo.src} width={35} height={35} alt='' />&nbsp;已加入</div>
+          </>
+        )}
         {
           isJoin && !isFortuneSubmit &&
           (
             <>
-            <div className={styles.cards}>
-              {FortuneList.map((item, idx) =>  <LuckyCard onClick={(event) => chooseFortune(item.type)} isFortuneSubmit={isFortuneSubmit} isPlay={isFortuneActive(item.type)} audioPath={item.audioPath} key={idx} img={item.image} backgroundColor={isFortuneActive(item.type) ? '#FB8111' : item.backgroundColor}>{item.title}</LuckyCard> )}
+            <div className={`${styles.cards} ${styles.cardsFortune}`}>
+
+              {FortuneList.map((item, idx) =>  {
+                
+                return <LuckyCard onClick={(event) => chooseFortune(item.type)} isFortuneSubmit={isFortuneSubmit} isPlay={isFortuneActive(item.type)} audioPath={item.audioPath} key={idx} img={item.image} backgroundColor={isFortuneActive(item.type) ? '#FB8111' : item.backgroundColor}>{item.title}</LuckyCard>
+
+              } )}
+
+
             </div>
             <div className={styles.title}>今天，我想來點...</div>
             </>
@@ -365,6 +405,8 @@ export default function FrontCover() {
           (isJoin && isFortuneSubmit && !isFeelingSubmit &&
           <div className={styles.cards}>
             {FeelingList.map((item, idx) =>  <LuckyCard onClick={(event) => chooseFeeling(item.type)} size={true} isFortuneSubmit={isFortuneSubmit} isPlay={isFeelingActive(item.type)} audioPath={item.audioPath} key={idx} img={item.image} backgroundColor={isFeelingActive(item.type) ? '#939393' : item.backgroundColor} subImage={subImage()}>{item.title}</LuckyCard> )}
+            <div className={styles.title}>{getFeelingSubTitle()}</div>
+
           </div> ) || ''
         }
         {

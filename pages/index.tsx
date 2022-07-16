@@ -2,8 +2,13 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import FrontCover from '../components/frontCover/FrontCover'
+// import FrontCover from '../components/frontCover/FrontCover'
 import React, { RefObject, useCallback, useLayoutEffect, useRef, useState, useEffect } from 'react';
+import dynamic from 'next/dynamic'
+
+const DynamicComponentWithNoSSR = dynamic(() => import('../components/frontCover/FrontCover'), {
+  ssr: false
+})
 
 function useRefDimensions(ref: RefObject<HTMLDivElement>) {
   const [dimensions, setDimensions] = useState({ width: 500, height: 500 })
@@ -42,7 +47,7 @@ const Home: NextPage = () => {
     </Head>
     <section className="nft-section">
       <div ref={nftDom} className="nft-container" style={{height: dimensions.height}}>
-        <FrontCover></FrontCover>
+        <DynamicComponentWithNoSSR></DynamicComponentWithNoSSR>
       </div>
     </section>
     </>
