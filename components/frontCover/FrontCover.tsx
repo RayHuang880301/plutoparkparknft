@@ -26,7 +26,7 @@ import keyboard2 from '../../assets/keyboard2.png'
 import keyboard3 from '../../assets/keyboard3.png'
 import keyboard4 from '../../assets/keyboard4.png'
 import Link from 'next/link'
-import dcQrCode from '../../assets/dcQrCode.png'
+import dcQrCode from '../../assets/dcQrCode.svg'
 
 const FAKE_LOADING_TIME = 5 * 1000;
 const SPECIAL_TIME = 14.6 * 1000;

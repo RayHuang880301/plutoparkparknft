@@ -3,7 +3,7 @@ import styles from './ResultCard.module.css'
 import Image from 'next/image';
 import ImageTicket from '../../assets/ticket.png';
 import Link from 'next/link';
-import mintPageQrCode from '../../assets/mintPageQrCode.png'
+import mintPageQrCode from '../../assets/mintPageQrCode.svg'
 
 interface Props {
   result: string;
