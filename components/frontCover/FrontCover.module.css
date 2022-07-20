@@ -34,6 +34,9 @@
   font-size: 24px;
   font-weight: 600;
   cursor: pointer;
+  opacity: 1;
+  transform: opacity 1000ms ease-in-out;
+  animation: fade-in 2000ms ease-in-out infinite;
 }
 
 .qrCode {
@@ -113,5 +116,18 @@
   .joinImg {
     width: 25px;
     height: 25px;
+  }
+}
+@keyframes fade-in {
+  0% {
+      opacity: 0.3;
+  }
+
+  50% {
+      opacity: 1;
+  }
+
+  100% {
+      opacity: 0.3;
   }
 }
