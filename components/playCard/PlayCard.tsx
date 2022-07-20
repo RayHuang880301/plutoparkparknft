@@ -11,21 +11,24 @@ interface Props {
   image: string;
   subImage: string;
 }
-
+const b5 = new Audio('/audio/b5.mp3');
+const b6 = new Audio('/audio/b6.mp3');
+const b7 = new Audio('/audio/b7.mp3');
+const b8 = new Audio('/audio/b8.mp3');
 
 export default function PlayCard(props: Props) {
   const { image, subImage, fortuneType } = props;
   const effectMusic1 = useRef<HTMLAudioElement | undefined>(
-    typeof Audio !== "undefined" ? new Audio('/audio/b5.mp3') : undefined
+    typeof Audio !== "undefined" ? b5 : undefined
   );
   const effectMusic2 = useRef<HTMLAudioElement | undefined>(
-    typeof Audio !== "undefined" ? new Audio('/audio/b6.mp3') : undefined
+    typeof Audio !== "undefined" ? b6 : undefined
   );
   const effectMusic3 = useRef<HTMLAudioElement | undefined>(
-    typeof Audio !== "undefined" ? new Audio('/audio/b7.mp3') : undefined
+    typeof Audio !== "undefined" ? b7 : undefined
   );
   const effectMusic4 = useRef<HTMLAudioElement | undefined>(
-    typeof Audio !== "undefined" ? new Audio('/audio/b8.mp3') : undefined
+    typeof Audio !== "undefined" ? b8 : undefined
   );
   // PLUTOEFFECT
   const root = useRef<HTMLDivElement>(null);
